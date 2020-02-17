@@ -4,6 +4,7 @@ import './sign-in.styles.scss'
 import FotmInput from './../fotm-input/fotm-input.component';
 import CustomButton from './../custom-button/custom-button.component';
 
+import { signInWithGoogle } from '../../firebase/firebase.util';
 
  class SignIn extends Component {
 
@@ -57,7 +58,16 @@ import CustomButton from './../custom-button/custom-button.component';
             />
           
 
-          <CustomButton type="submit"> Sign In </CustomButton>
+          <div className="buttons">
+            <CustomButton type="submit"> Sign In </CustomButton>
+            <CustomButton 
+              onClick={signInWithGoogle} 
+              isGoggleSignIn>
+              {''}
+               Sign In with Google
+               {''}
+            </CustomButton>
+          </div>
         </form>
       </div>
     )
