@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import './sign-in.styles.scss'
-import FotmInput from './../fotm-input/fotm-input.component';
+import FormInput from '../form-input/form-input.component';
 import CustomButton from './../custom-button/custom-button.component';
 
 import { signInWithGoogle } from '../../firebase/firebase.util';
@@ -37,7 +37,7 @@ import { signInWithGoogle } from '../../firebase/firebase.util';
         <span>Sign in with your email and password</span>
 
         <form onSubmit={this.handleSubmit}>
-          <FotmInput 
+          <FormInput 
             type="text" 
             name="email" 
             value={email} 
@@ -47,7 +47,7 @@ import { signInWithGoogle } from '../../firebase/firebase.util';
             />
           
 
-          <FotmInput 
+          <FormInput 
             type="password" 
             name="password" 
             value={password}

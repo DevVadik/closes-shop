@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './fotm-input.style.scss'
+import './form-input.style.scss'
 
-const FotmInput = ({ handleChange, label, ...otherProps}) => {
+const FormInput = ({ handleChange, label, ...otherProps}) => {
   return (
     <div className="group">
       <input 
@@ -22,4 +22,4 @@ const FotmInput = ({ handleChange, label, ...otherProps}) => {
   )
 }
 
-export default FotmInput
+export default FormInput
