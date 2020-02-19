@@ -23,10 +23,10 @@ const Header = ({currentUser, hidden}) => {
         </Link>
         {
           currentUser ?
-          (<React.Fragment>
+          (<Fragment>
               <div className="option" onClick={() => auth.signOut()}>SIGN OUT</div>
               <CartIcon/>
-            </React.Fragment>)
+            </Fragment>)
           :
           <Link className="option" to='/signin'>
             SIGN IN

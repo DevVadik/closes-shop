@@ -4,13 +4,27 @@
   flex-direction: column;
   height: 350px;
   align-items: center;
-
+  position: relative;
   .image {
     width: 100%;
     height: 95%;
     background-size: cover;
     background-position: center;
     margin-bottom: 5px;
+    transition: all .4s;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px 1px rgba(0,0,0,0.05), 0 4px 10px 1px rgba(0,0,0,0.07), 0 7px 15px 4px rgba(0,0,0,0.07);
+  }
+
+  .custom-button {
+    width: 80%;
+    opacity: 0;
+    position: absolute;
+    top: 255px;
+    visibility: hidden;
+    transition: all .5s ease-in-out;
+    display: flex;
+
   }
 
   .collection-footer {
@@ -19,6 +33,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 18px;
+    pointer-events: none;
 
     .name {
       width: 90%;
@@ -27,6 +42,22 @@
 
     .price {
       width: 10%;
+    }
+  }
+
+  &:hover {
+    .image {
+      opacity: 0.95;
+      
+      transform: translateY(-3px) ;
+      box-shadow: 0 2px 9px 2px rgba(0,0,0,0.05), 0 11px 24px 2px rgba(0,0,0,0.07), 0 20px 41px 8px rgba(0,0,0,0.07);
+    cursor: pointer;
+
+    }
+
+    .custom-button {
+      opacity: 0.75;
+      visibility: visible;
     }
   }
 }
