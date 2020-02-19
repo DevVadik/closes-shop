@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import './header.styles.scss'
 import { auth } from '../../firebase/firebase.util';
+import CartIcon from './../cart-icon/cart-icon.component';
+import CartDropdown from './../cart-dropdown/cart-dropdown.component';
 
-const Header = ({currentUser}) => {
-  console.log(currentUser);
+const Header = ({currentUser, hidden}) => {
   return (
     <header className="header">
       <Link className="logo-container" to='/'>
@@ -22,19 +23,27 @@ const Header = ({currentUser}) => {
         </Link>
         {
           currentUser ?
-          <div className="option" onClick={() => auth.signOut()}>SIGN OUT</div>
+          (<React.Fragment>
+              <div className="option" onClick={() => auth.signOut()}>SIGN OUT</div>
+              <CartIcon/>
+            </React.Fragment>)
           :
           <Link className="option" to='/signin'>
             SIGN IN
           </Link>
+          
         }
         
       </div>
+      {
+        hidden ? null : <CartDropdown/>
+      }
     </header>
   )
 }
-const mapStateToProps = (state) => ({
-  currentUser: state.user.currentUser
+const mapStateToProps = ({user: {currentUser}, cart: {hidden}}) => ({
+  currentUser,
+  hidden,
 })
 
 
