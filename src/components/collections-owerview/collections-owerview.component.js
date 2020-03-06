@@ -9,7 +9,6 @@ import './collections-owerview.styles.scss'
 
 
 const CollectionsOwerview = ({collections}) => {
-  console.log("TCL: CollectionsOwerview -> collections", collections)
   return (
     <div className="collections-overview">
       {

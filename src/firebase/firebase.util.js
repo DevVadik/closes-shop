@@ -12,15 +12,15 @@ const config = {
   messagingSenderId: "694915206601",
   appId: "1:694915206601:web:b20789c1ce61d0e5106c18",
   measurementId: "G-QZWLSPB5L8"
-}
+};
 
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if(!userAuth) return;
 
-  const userRef = firestore.doc(`users/${userAuth.uid}`)
+  const userRef = firestore.doc(`users/${userAuth.uid}`);
 
-  const snapShot = await userRef.get()
+  const snapShot = await userRef.get();
   
   if(!snapShot.exists) {
     const { displayName, email } = userAuth;
@@ -40,6 +40,38 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
   return userRef;
 };
+
+
+export const addCollectionAndItems = async (collectionKey, objectToAdd) => {
+  const collectionRef = firestore.collection(collectionKey);
+
+  const batch = firestore.batch();
+
+  objectToAdd.forEach(obj => {
+    const newDocRef = collectionRef.doc();
+    batch.set(newDocRef, obj)
+  });
+
+  return await batch.commit();
+}
+
+
+export const convertCollectionsSnapshotToMap = (collections) => {
+  const transformedCollection = collections.docs.map(doc => {
+    const { title, items } = doc.data();
+
+    return {
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items
+    }
+  })
+  return transformedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.title.toLowerCase()] = collection;
+    return accumulator
+  },{})
+}
 
 firebase.initializeApp(config);
 

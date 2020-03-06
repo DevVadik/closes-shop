@@ -14,15 +14,18 @@ import Header from './components/header/header.component';
 
 
 import { setCurrentUser } from './redux/user/user.actions';
-import { selectCurrentUser } from './redux/user/user.selector'
+import { selectCurrentUser } from './redux/user/user.selector';
+/* import { selectCollectionsForPreview} from './redux/shop/shop.selectors'; *///add to Firebase
 
-import { auth, createUserProfileDocument } from "./firebase/firebase.util"
+import { auth, createUserProfileDocument/* , addCollectionAndItems */ /*add to Firebase*/ } from "./firebase/firebase.util";
 
 class App extends React.Component {
 
   unsubscribeFromAuth = null
 
   componentDidMount() {
+
+
     const {setCurrentUser} = this.props
 
 
@@ -40,9 +43,8 @@ class App extends React.Component {
       } else {
         setCurrentUser( userAuth )
       }
-      
-      
     })
+   /*  addCollectionAndItems('collections', collectionsArray.map(({title, items}) => ({title, items}))) *///add to Firebase
   }
 
   componentWillUnmount() {
@@ -65,7 +67,9 @@ class App extends React.Component {
   }
 }
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
+ /*  collectionsArray: selectCollectionsForPreview *///add to Firebase
+  
 })
 
 const mapDispatchToProps = dispatch => ({
